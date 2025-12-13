@@ -1,14 +1,14 @@
-#include <QCoreApplication>
+#include <QGuiApplication>
 #include <QImage>
 #include <QPainter>
 #include <QFont>
 #include <iostream>
 
 int main(int argc, char *argv[]){
-    QCoreApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     
     // Создаем простое изображение 400x300
-    QImage image(400, 300, QImage::Format_RGB32);
+    QImage image(512, 512, QImage::Format_RGB32);
     image.fill(Qt::white);
     
     // Рисуем текст

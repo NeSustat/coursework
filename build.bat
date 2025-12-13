@@ -5,7 +5,7 @@ set CMAKE_PREFIX_PATH=C:\vscode\coursework\QT\6.9.0\mingw_64
 echo Building project...
 if not exist build mkdir build
 cd build
-cmake ..
+cmake -G "MinGW Makefiles" ..
 cmake --build .
 cd ..
 echo Done! Run: build\wordcloud.exe
