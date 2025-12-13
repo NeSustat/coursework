@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QFont>
 #include <iostream>
+<<<<<<< HEAD
 
 int main(int argc, char *argv[]){
     QCoreApplication app(argc, argv);
@@ -26,5 +27,30 @@ int main(int argc, char *argv[]){
         std::cout << "Failed to save image" << std::endl;
     }
     
+=======
+#include <cmath>
+#include <string>
+#include <vector>
+
+// класс отвечающий за облако слов
+class WordCloud {
+protected:
+    std::vector<std::string> words;
+public:
+    // конструктор. собирает вектор со словами разделяя их по пробелу
+    WordCloud(){
+        std::cout << "write word for word cloud\n";
+        std::string word;
+        while (std::cin >> word){
+            words.push_back(word);
+            if (std::cin.peek() == '\n'){
+                break;
+            }
+        }
+    }
+};
+
+int main(){
+>>>>>>> 4fd2da09a1db70f92c3d8d20404a982787b24f35
     return 0;
 }
