@@ -67,6 +67,9 @@ void WordCloud::drawFirstWord(){
             painter.drawText(leftTop.x() - rect.x(), leftTop.y() - rect.y(), words[0]);
             static std::random_device rd;
             static std::mt19937 gen(rd());
+            if (words.size() > 5){
+                words.erase(words.begin());
+            }
             shuffle(words.begin(), words.end(), gen);
             drawWord();
             return;
