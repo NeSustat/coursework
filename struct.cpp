@@ -2,6 +2,15 @@
 #include <random>
 #include <algorithm>
 
+/*==================================================================================*/
+WordCloud::WordCloud(int side, const std::vector<QString>& testWords) 
+    : font("Ink Free"), side(side), freePlace(side, std::vector<bool>(side, false)), 
+      image(side, side, QImage::Format_RGB32), words(testWords) {
+    image.fill(Qt::white);
+    painter.begin(&image);
+}
+/*=================================================================================*/
+
 WordCloud::WordCloud(int side) : font("Ink Free"), side(side), freePlace(side, std::vector<bool>(side, false)), image(side, side, QImage::Format_RGB32){
     std::cout << "write word for word cloud\n";
     std::string word;
@@ -17,7 +26,7 @@ WordCloud::WordCloud(int side) : font("Ink Free"), side(side), freePlace(side, s
 
 void WordCloud::saveImage(){
     painter.end();
-    if (image.save("../WordCloud.png", "PNG")) {
+    if (image.save("../WordCloud.jpg", "JPEG")) {
         std::cout << "Qt save successful! Image saved as WordCloud.png" << std::endl;
     } else {
         std::cout << "Failed to save image" << std::endl;
@@ -28,7 +37,7 @@ bool WordCloud::checkPlace(int x, int y, const QString& word){
     QSize size = getSize(word);
     int width = size.width() + 2;
     int height = size.height() + 2;
-    if (abs(x - side / 4) < side / 2 || y < 0 || x + width > side || y + height > side){
+    if (x < 0 || y < 0 || x + width > side || y + height > side){
         return false;
     }
     for (int i = x; i < x + width; i++){
@@ -147,6 +156,9 @@ QPoint WordCloud::getLeftTop(int centerX, int centerY, const QString& word){
     return QPoint(x, y);
 }
 
+/*===============================================тесты===========================================================*/
+WordCloudCircle::WordCloudCircle(int side, const std::vector<QString>& testWords)  : WordCloud(side, testWords) {}
+/*===============================================================================================================*/
 
 WordCloudCircle::WordCloudCircle(int side) : WordCloud(side){}
 

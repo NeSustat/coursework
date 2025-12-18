@@ -1,2 +1,7 @@
 QT/
+googletest/
+build_test/
 build/
+
+*.jpg
+*.png

@@ -35,6 +35,7 @@ protected:
     int curIndexWords = 0; // индекс последнего слова + 1
 public:
     WordCloud(int side); // конструктор. собирает вектор со словами разделяя их по пробелу
+    WordCloud(int side, const std::vector<QString>& testWords); // конструктор для тестов
     void saveImage(); // сохраняет изображение в файл
     virtual bool checkPlace(int x, int y, const QString& word); // проверяет свободно ли место для слова
     void switchFlag(int x, int y, const QString& word); // поменять в матрице свободные места на занятые после того как будет размещено слово
@@ -44,11 +45,13 @@ public:
     int random(int max); // рандом
     QSize getSize(const QString& word); // проверка сколько слово пикселей в длину и ширину (надо для поиска центра)
     QPoint getLeftTop(int x, int y, const QString& word); // дает верхний левый угол отностилеьно координат центра
+    int getSide() const { return side; };
 };
 
 
 class WordCloudCircle : public WordCloud {
 public:
     WordCloudCircle(int side);
-    bool checkPlace(int x, int y, const QString& word) override;
+    WordCloudCircle(int side, const std::vector<QString>& testWords); // для тестов
+    bool checkPlace(int x, int y, const QString& word) override; // проверяет свободно ли место для слова в форме круга
 };
