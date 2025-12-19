@@ -27,7 +27,7 @@ WordCloud::WordCloud(int side) : font("Ink Free"), side(side), freePlace(side, s
 void WordCloud::saveImage(){
     painter.end();
     if (image.save("../WordCloud.jpg", "JPEG")) {
-        std::cout << "Qt save successful! Image saved as WordCloud.png" << std::endl;
+        std::cout << "Qt save successful! Image saved as WordCloud.jpg" << std::endl;
     } else {
         std::cout << "Failed to save image" << std::endl;
     }
