@@ -51,11 +51,7 @@ TEST_F(WordCloudTest, CheckPlaceValidatesPosition) {
     std::vector<QString> testWords = {"test"};
     WordCloud wc(500, testWords);
     QString word = "test";
-    
-    // Валидная позиция (не в центре, где есть ограничение)
     EXPECT_TRUE(wc.checkPlace(200, 100, word));
-    
-    // Невалидная позиция (за границами)
     EXPECT_FALSE(wc.checkPlace(-10, 100, word));
     EXPECT_FALSE(wc.checkPlace(100, -10, word));
     EXPECT_FALSE(wc.checkPlace(600, 100, word));
@@ -88,10 +84,6 @@ TEST_F(WordCloudTest, CircleCheckPlaceRespectsBoundary) {
     std::vector<QString> testWords = {"test"};
     WordCloudCircle wcc(500, testWords);
     QString word = "test";
-    
-    // Центр круга - должно быть валидно
     EXPECT_TRUE(wcc.checkPlace(240, 240, word));
-    
-    // Край круга - может быть невалидно
     EXPECT_FALSE(wcc.checkPlace(10, 10, word));
 }

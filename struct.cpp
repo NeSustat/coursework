@@ -2,14 +2,15 @@
 #include <random>
 #include <algorithm>
 
-/*==================================================================================*/
+
+/*===============================================тесты===========================================================*/
 WordCloud::WordCloud(int side, const std::vector<QString>& testWords) 
     : font("Ink Free"), side(side), freePlace(side, std::vector<bool>(side, false)), 
       image(side, side, QImage::Format_RGB32), words(testWords) {
     image.fill(Qt::white);
     painter.begin(&image);
 }
-/*=================================================================================*/
+/*===============================================================================================================*/
 
 WordCloud::WordCloud(int side) : font("Ink Free"), side(side), freePlace(side, std::vector<bool>(side, false)), image(side, side, QImage::Format_RGB32){
     std::cout << "write word for word cloud\n";
@@ -62,14 +63,13 @@ void WordCloud::switchFlag(int x, int y, const QString& word){
 }
 
 void WordCloud::drawFirstWord(){
+    QPoint leftTop = getLeftTop(side / 2, side / 2, words[0]);
     for (int i = side/5; i > 15; i -= 5){
         font.setPixelSize(i);
         painter.setFont(font);
-        QPoint leftTop = getLeftTop(side / 2, side / 2, words[0]);
         if (checkPlace(leftTop.x(), leftTop.y(), words[0])){
             curPixel = i / 2;
             switchFlag(leftTop.x(), leftTop.y(), words[0]);
-            painter.setFont(font);
             painter.setPen(Qt::red);
             QFontMetrics metrics(font);
             QRect rect = metrics.tightBoundingRect(words[0]);
